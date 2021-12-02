@@ -2,7 +2,7 @@
 
 https://adventofcode.com/2021
 
-    $ cabal run a00 < i/00          # Haskell code
+    $ cabal run a00 < i/00                       # Haskell code
     $ g++ -std=gnu++20 -o x00 c00; ./x00 < i/00  # C++ code
 
 **Day 1:**
