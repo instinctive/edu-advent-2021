@@ -81,4 +81,3 @@ executable a02
   ghc-options: -main-is A02
   build-depends:
    , lens
-   , string-qq
