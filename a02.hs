@@ -14,13 +14,13 @@ zSub = Sub 0 0 0
 answer Sub{..} = _subH * _subD
 
 main = do
-    s <- getContents
+    s <- getContents <&> lines
     print $ solve cmd1 s
     print $ solve cmd2 s
 
 solve cmd s =
     flip (,) <*> answer $
-    foldl' (&) zSub . map (parse cmd) $ lines s
+    foldl' (&) zSub $ map (parse cmd) s
 
 parse cmd s = case words s of
     [k,x] -> cmd k (read x)
