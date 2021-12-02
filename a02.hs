@@ -5,6 +5,7 @@
 module A02 where
 
 import Control.Lens
+import Control.Monad.State
 
 data Sub = Sub { _subP, _subD, _subA :: !Int } deriving Show
 makeLenses ''Sub
@@ -12,25 +13,25 @@ zSub = Sub 0 0 0
 answer Sub{..} = _subP * _subD
 
 main = do
-    s <- getContents <&> lines
-    print $ solve cmd1 s
-    print $ solve cmd2 s
+    kk <- getContents <&> lines
+    let (one,two) = solve kk
+    print $ answer one
+    print $ answer two
 
-solve cmd s =
-    answer $ foldl' (&) zSub $ map (parse cmd) s
+solve = flip execState (zSub,zSub) . sequence_ . map (parse.words)
 
-parse cmd s = case words s of
-    [k,x] -> cmd k (read x)
-    _ -> error s
+parse [k,s] = let v = read @Int s in case k of
+    "forward" -> do
+        _1.subP += v
+        _2.subP += v
+        a <- use $ _2.subA
+        _2.subD += v * a
+    "down" -> do
+        _1.subD += v
+        _2.subA += v
+    "up" -> do
+        _1.subD -= v
+        _2.subA -= v
+    _ -> error k
 
-cmd1 = \case
-    "forward" -> over subP . (+)
-    "down"    -> over subD . (+)
-    "up"      -> over subD . subtract
-    e -> error e
-
-cmd2 = \case
-    "forward" -> \x s@Sub{..} -> s & over subP (+x) . over subD (+ (_subA * x))
-    "down"    -> over subA . (+)
-    "up"      -> over subA . subtract
-    e -> error e
+parse e = error $ show e
