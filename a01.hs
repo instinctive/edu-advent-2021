@@ -4,11 +4,8 @@ module A01 where
 
 main = do
     xx <- getContents <&> map read . lines
-    print $ count (<) xx
-    print $ count (<) $ window 3 xx
+    let x3 = [ a+b+c | (a:b:c:_) <- tails xx ]
+    print $ count xx
+    print $ count x3
 
-delta f n = zipWith f <*> drop n
-
-window n = delta (flip (-)) n . scanl (+) 0
-
-count p = length . filter id . delta p 1
+count s = length . filter id $ zipWith (<) s (tail s)
