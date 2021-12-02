@@ -1,15 +1,16 @@
 // https://adventofcode.com/2021/day/1
 
 #include <iostream>
+#include <iterator>
 #include <vector>
 
 using std::cin;
 using std::cout;
 using std::endl;
-using std::vector;
 
 int main() {
-    vector<int> ary;
+    std::istream_iterator<int> start(cin), end;
+    std::vector<int> ary(start,end);
 
     auto count = [&ary](int n) {
         int total = 0;
@@ -20,11 +21,6 @@ int main() {
         }
         return total;
     };
-
-    int depth;
-    while (cin >> depth) {
-        ary.push_back(depth);
-    }
 
     cout << count(ary.size()-1) << endl;
 
