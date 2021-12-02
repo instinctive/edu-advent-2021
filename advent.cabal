@@ -1,0 +1,84 @@
+cabal-version: 3.0
+version: 1.0.0.0
+name: advent
+-- vim: foldmethod=marker
+
+common ghc2021 -- {{{
+  -- https://www.reddit.com/r/haskell/comments/kzxsve/ghc_2021/
+  -- https://github.com/ghc-proposals/ghc-proposals/blob/master/proposals/0380-ghc2021.rst
+  default-extensions:
+    -- Syntax:
+    BangPatterns
+    EmptyCase
+    ImportQualifiedPost
+    NamedFieldPuns
+    PostfixOperators
+    TupleSections
+    -- Literals:
+    BinaryLiterals
+    HexFloatLiterals
+    NumericUnderscores
+    -- Types:
+    ConstraintKinds
+    ExistentialQuantification
+    GADTSyntax
+    PolyKinds
+    RankNTypes
+    StandaloneKindSignatures
+    TypeApplications
+    TypeOperators
+    -- Type signatures:
+    ExplicitForAll
+    KindSignatures
+    NamedWildCards
+    ScopedTypeVariables
+    -- Class and instances declarations:
+    ConstrainedClassMethods
+    FlexibleContexts
+    FlexibleInstances
+    InstanceSigs
+    MultiParamTypeClasses
+    TypeSynonymInstances
+    -- Deriving mechanism:
+    DeriveDataTypeable
+    DeriveFoldable
+    DeriveFunctor
+    DeriveGeneric
+    DeriveLift
+    DeriveTraversable
+    EmptyDataDeriving
+    GeneralisedNewtypeDeriving
+    StandaloneDeriving
+  -- }}}
+
+common shared -- {{{
+  import: ghc2021
+  default-language: Haskell2010
+  build-depends: base, base-prelude
+  mixins: base hiding (Prelude), base-prelude (BasePrelude as Prelude)
+  default-extensions:
+    BlockArguments
+    DataKinds
+    DerivingVia
+    ImplicitParams
+    LambdaCase
+    MonadComprehensions
+    MultiWayIf
+    RecordWildCards
+    TransformListComp
+    TypeFamilies
+    ViewPatterns
+  -- }}}
+
+executable a01
+  import: shared
+  main-is: a01.hs
+  ghc-options: -main-is A01
+
+executable a02
+  import: shared
+  main-is: a02.hs
+  ghc-options: -main-is A02
+  build-depends:
+   , lens
+   , string-qq
