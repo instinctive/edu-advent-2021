@@ -82,3 +82,10 @@ executable a02
   build-depends:
    , lens
    , mtl
+
+executable a03
+  import: shared
+  main-is: a03.hs
+  ghc-options: -main-is A03
+  build-depends:
+   , containers
