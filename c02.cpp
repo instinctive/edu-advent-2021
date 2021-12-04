@@ -31,6 +31,6 @@ int main() {
         }
     }
 
-    cout << sub1.pos * sub1.dep << endl;
-    cout << sub2.pos * sub2.dep << endl;
+    cout << "Part 1: " << sub1.pos * sub1.dep << endl;
+    cout << "Part 2: " << sub2.pos * sub2.dep << endl;
 }

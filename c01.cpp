@@ -22,11 +22,11 @@ int main() {
         return total;
     };
 
-    cout << count(ary.size()-1) << endl;
+    cout << "Part 1: " << count(ary.size()-1) << endl;
 
     for (int i=0; i<ary.size()-2; ++i) {
         ary[i] += ary[i+1] + ary[i+2];
     }
 
-    cout << count(ary.size()-3) << endl;
+    cout << "Part 2: " << count(ary.size()-3) << endl;
 }
