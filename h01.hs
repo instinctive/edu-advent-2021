@@ -1,6 +1,6 @@
 -- https://adventofcode.com/2021/day/1
 
-module A01 where
+module H01 where
 
 main = do
     xx <- getContents <&> map read . lines

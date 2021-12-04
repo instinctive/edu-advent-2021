@@ -2,7 +2,7 @@
 
 {-# LANGUAGE TemplateHaskell #-}
 
-module A02 where
+module H02 where
 
 import Control.Lens
 import Control.Monad.State

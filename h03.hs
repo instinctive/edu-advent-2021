@@ -1,6 +1,6 @@
 -- https://adventofcode.com/2021/day/3
 
-module A03 where
+module H03 where
 
 import qualified Data.IntMap.Strict as M
 

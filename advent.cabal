@@ -70,22 +70,22 @@ common shared -- {{{
     ViewPatterns
   -- }}}
 
-executable a01
+executable h01
   import: shared
-  main-is: a01.hs
-  ghc-options: -main-is A01
+  main-is: h01.hs
+  ghc-options: -main-is H01
 
-executable a02
+executable h02
   import: shared
-  main-is: a02.hs
-  ghc-options: -main-is A02
+  main-is: h02.hs
+  ghc-options: -main-is H02
   build-depends:
    , lens
    , mtl
 
-executable a03
+executable h03
   import: shared
-  main-is: a03.hs
-  ghc-options: -main-is A03
+  main-is: h03.hs
+  ghc-options: -main-is H03
   build-depends:
    , containers
