@@ -16,9 +16,6 @@ int main() {
     const int ndata = ary.size();
     const int nbits = ary[0].size();
 
-    // ----------------------------------------------------------------------
-    // Part One
-
     int gamma = 0;
     for (int i=0; i<nbits; ++i) {
         int nz = 0;
@@ -31,12 +28,8 @@ int main() {
     const int epsilon = (1 << nbits) - gamma - 1;
     cout << "Part 1: " << gamma * epsilon << " = " << gamma << " * " << epsilon << endl;
 
-    // ----------------------------------------------------------------------
-    // Part Two
-    
     std::sort(ary.begin(),ary.end());
 
-    // Count the number of zeros at this index. Requires sorted order.
     auto count = [&ary](int index, int lo, int hi) {
         while (true) {
             int md = (lo + hi) / 2;
@@ -49,17 +42,14 @@ int main() {
         }
     };
 
-    // Calculate rating for this criteria.
     auto rating = [&ary,ndata,nbits,&count](bool isCO2) {
         int value = 0, lo = 0, hi = ndata;
         for (int i=0; i<nbits; ++i) {
             value *= 2;
-            // When there is a single number left, use it.
-            if (lo+1 == hi) {
+            if (lo+1 == hi) { // only one number left
                 if (ary[lo][i] == '1') value += 1;
                 continue;
             }
-            // Otherwise count zeros and apply bit criteria.
             int nz = count(i,lo,hi);
             if (((nz - lo) * 2 <= hi - lo) == isCO2) {
                 hi = nz;
