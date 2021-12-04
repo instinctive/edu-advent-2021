@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# vim: filetype=make
+
+/usr/bin/env cat <<EOM >.cMakefile
+.PHONY: ctest
+
+ctest: x${1}
+	@echo "Running Day ${1} on test input."
+	@./x${1} < t/${1}
+
+x${1}: c${1}.cpp
+	@echo "Building Day ${1}."
+	@g++ -std=gnu++20 -o x${1} c${1}.cpp
+EOM
+
+make -f .cMakefile

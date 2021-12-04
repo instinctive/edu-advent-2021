@@ -2,8 +2,9 @@
 
 https://adventofcode.com/2021
 
-    $ cabal run a00          # Haskell
-    $ g++ -o x00 c00; ./x00  # C++
+    $ cabal run a00  # Haskell
+    $ ./ctest 00     # C++ test
+    $ ./crun  00     # C++ full run
 
 **Day 1:**
 [Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/a01.hs)
