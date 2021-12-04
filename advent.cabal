@@ -98,3 +98,4 @@ executable h04
    , containers
    , monoidal-containers
    , split
+   , tagged
