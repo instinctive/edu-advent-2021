@@ -10,9 +10,13 @@ main = do
     let bb = mconcat $ zipWith mkboard [1..] bb'
     let uu = M.fromListWith S.union $ concatMap mk $ M.assocs bb
     let ans = solve M.empty M.empty uu bb xx
-    traverse_ print ans
+    answer 1 $ head ans
+    answer 2 $ last ans
   where
     mk (i,qq) = (,S.singleton i) <$> map fst qq
+
+answer :: Int -> ((Int,Int),Int) -> IO ()
+answer i ((_,v),b) = printf "Part %d: #%d = %d\n" i b v
 
 data Bingo = Row Int | Col Int deriving (Eq,Ord,Show)
 
