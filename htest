@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+cabal run h${1} < t/${1}
