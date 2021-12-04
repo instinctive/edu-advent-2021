@@ -10,13 +10,17 @@ import Control.Monad.State
 data Sub = Sub { _subP, _subD, _subA :: !Int } deriving Show
 makeLenses ''Sub
 zSub = Sub 0 0 0
-answer Sub{..} = _subP * _subD
 
 main = do
     kk <- getContents <&> lines
     let (one,two) = solve kk
-    print $ answer one
-    print $ answer two
+    answer 1 one
+    answer 2 two
+
+answer :: Int -> Sub -> IO ()
+answer i Sub{..} = 
+    printf "Part %d: %d = %d * %d\n"
+    i (_subP * _subD) _subP _subD
 
 solve = flip execState (zSub,zSub) . sequence_ . map (parse.words)
 
