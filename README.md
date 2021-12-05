@@ -9,16 +9,16 @@ https://adventofcode.com/2021
     $ ./crun  00     # C++ full run
 
 **Day 1:**
-[Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/a01.hs)
+[Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/h01.hs)
 [C++](https://github.com/instinctive/edu-advent-2021/blob/main/c01.cpp)
 
 **Day 2:**
-[Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/a02.hs)
+[Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/h02.hs)
 [C++](https://github.com/instinctive/edu-advent-2021/blob/main/c02.cpp)
 
 **Day 3:**
-[Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/a03.hs)
+[Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/h03.hs)
 [C++](https://github.com/instinctive/edu-advent-2021/blob/main/c03.cpp)
 
 **Day 4:**
-[Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/a04.hs)
+[Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/h04.hs)
