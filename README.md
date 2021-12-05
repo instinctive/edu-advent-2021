@@ -2,7 +2,9 @@
 
 https://adventofcode.com/2021
 
-    $ cabal run a00  # Haskell
+    $ ./htest 00     # Haskell test
+    $ ./hrun  00     # Haskell full run
+
     $ ./ctest 00     # C++ test
     $ ./crun  00     # C++ full run
 
@@ -17,3 +19,6 @@ https://adventofcode.com/2021
 **Day 3:**
 [Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/a03.hs)
 [C++](https://github.com/instinctive/edu-advent-2021/blob/main/c03.cpp)
+
+**Day 4:**
+[Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/a04.hs)
