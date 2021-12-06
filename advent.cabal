@@ -99,3 +99,11 @@ executable h04
    , monoidal-containers
    , split
    , tagged
+
+executable h05
+  import: shared
+  main-is: h05.hs
+  ghc-options: -main-is H05
+  build-depends:
+   , containers
+   , linear
