@@ -22,3 +22,6 @@ https://adventofcode.com/2021
 
 **Day 4:**
 [Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/h04.hs)
+
+**Day 5:**
+[Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/h05.hs)
