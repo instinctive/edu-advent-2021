@@ -107,3 +107,11 @@ executable h05
   build-depends:
    , containers
    , linear
+
+executable h06
+  import: shared
+  main-is: h06.hs
+  ghc-options: -main-is H06
+  build-depends:
+   , array
+   , containers
