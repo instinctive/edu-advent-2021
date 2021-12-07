@@ -28,3 +28,6 @@ https://adventofcode.com/2021
 
 **Day 6:**
 [Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/h06.hs)
+
+**Day 7:**
+[Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/h07.hs)

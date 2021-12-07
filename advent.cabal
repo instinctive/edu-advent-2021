@@ -115,3 +115,10 @@ executable h06
   build-depends:
    , array
    , containers
+
+executable h07
+  import: shared
+  main-is: h07.hs
+  ghc-options: -main-is H07
+  build-depends:
+   , containers
