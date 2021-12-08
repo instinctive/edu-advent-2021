@@ -122,3 +122,10 @@ executable h07
   ghc-options: -main-is H07
   build-depends:
    , containers
+
+executable h08
+  import: shared
+  main-is: h08.hs
+  ghc-options: -main-is H08
+  build-depends:
+   , containers
