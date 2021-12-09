@@ -129,3 +129,12 @@ executable h08
   ghc-options: -main-is H08
   build-depends:
    , containers
+
+executable h09
+  import: shared
+  main-is: h09.hs
+  ghc-options: -main-is H09
+  build-depends:
+   , array
+   , containers
+   , linear
