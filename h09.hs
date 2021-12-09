@@ -25,18 +25,19 @@ solve ss =
     depth = (ary A.!)
     range = A.range (V2 1 1, V2 nrows ncols)
     lows = filter isLow range
-    adj = let n = -1 in [V2 1 0,V2 0 1,V2 n 0,V2 0 n]
-    isLow v = all f adj where
-        f d = depth (v + d) > x
-        x = depth v
+    deltas = let n = -1 in [V2 1 0,V2 0 1,V2 n 0,V2 0 n]
+    adj v = (+v) <$> deltas
+    isLow v = all ((>x).depth) (adj v) where x = depth v
     one = length lows + sum (depth <$> lows)
     singles = S.fromList $ filter ((<9).depth) range
     two = go [] singles
     go bb s = case S.minView s of
         Nothing -> product . take 3 . sortBy (comparing Down) $ bb
-        Just (v,s') -> dfs 1 s' $ (+v) <$> adj
+        Just (v,s') -> dfs 1 s' (adj v)
       where
         dfs b s [] = go (b:bb) s
-        dfs b s (v:vv)
-            | S.member v s = dfs (b+1) (S.delete v s) $ map (+v) adj <> vv
-            | otherwise = dfs b s vv
+        dfs b s (v:vv) 
+            | not found = dfs b s vv
+            | otherwise = dfs (b+1) s' (adj v <> vv)
+          where
+            (found,s') = S.alterF (,False) v s
