@@ -138,3 +138,9 @@ executable h09
    , array
    , containers
    , linear
+
+executable h10
+  import: shared
+  main-is: h10.hs
+  ghc-options: -main-is H10
+  build-depends:
