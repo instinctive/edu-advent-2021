@@ -13,7 +13,7 @@ solve :: String -> Either Int Int
 solve = fmap score . foldM go " " where
     go lll@(l:ll) r = case linfo r of
         Nothing -> Right (r:lll)
-        Just (c,v) -> bool (Left v) (Right ll) (c == l)
+        Just (c,v) -> if c == l then Right ll else Left v
 
 linfo ')' = Just ('(', 3)
 linfo ']' = Just ('[', 57)
