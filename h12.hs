@@ -7,23 +7,24 @@ import qualified Data.Text as T
 
 main = do
     graph <- parse <$> getContents
-    print $ solve graph
+    printf "Part 1: %d\n" $ solve True graph
+    printf "Part 2: %d\n" $ solve False graph
 
-parse = M.fromListWith (<>) . concatMap (mk . pline) . lines where
+parse = M.fromListWith (<>) . filter valid . concatMap (mk . pline) . lines where
     pline = map T.pack . words . map tr
+    valid (_,[a]) = a /= "start"
     mk [a,b] = [(a,[b]),(b,[a])]
     tr '-' = ' '
     tr c = c
 
 isSmall = isLower . flip T.index 0
 
-solve graph = dfs 0 [["start"]] where
+solve b graph = dfs (0::Int) [(b,["start"])] where
     dfs !n [] = n
-    dfs !n (p@(x:xx):more)
-        -- | traceShow p False = undefined
+    dfs !n ((used,p@(x:xx)):more)
         | x == "end" = dfs (n+1) more
-        | isSmall x && elem x xx = dfs n more
+        | used && visited = dfs n more
         | otherwise = dfs n $ next <> more
       where
-        next = (:p) <$> M.findWithDefault [] x graph
-
+        visited = isSmall x && elem x xx
+        next = (used || visited,).(:p) <$> M.findWithDefault [] x graph
