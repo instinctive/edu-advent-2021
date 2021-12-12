@@ -144,3 +144,18 @@ executable h10
   main-is: h10.hs
   ghc-options: -main-is H10
   build-depends:
+
+executable h11
+  import: shared
+  main-is: h11.hs
+  ghc-options: -main-is H11
+  build-depends:
+   , containers
+   , linear
+   , monad-extras
+
+executable h12
+  import: shared
+  main-is: h12.hs
+  ghc-options: -main-is H12
+  build-depends:
