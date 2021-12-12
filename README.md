@@ -43,3 +43,6 @@ https://adventofcode.com/2021
 
 **Day 11:**
 [Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/h11.hs)
+
+**Day 12:**
+[Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/h12.hs)

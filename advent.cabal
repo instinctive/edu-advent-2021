@@ -159,3 +159,5 @@ executable h12
   main-is: h12.hs
   ghc-options: -main-is H12
   build-depends:
+   , containers
+   , text
