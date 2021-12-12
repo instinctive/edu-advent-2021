@@ -5,22 +5,24 @@ import Linear.V2
 import qualified Data.Map.Strict as M
 
 main = do
-    one <- solve 100 . parse <$> getContents
-    printf "Part 1: %d\n" one
-    -- printf "Part 2: %d\n" two
+    start <- parse <$> getContents
+    let z = M.map (const 0) start
+    let reset m = M.union m z
+    let seq = iterate (step . reset) start
+    printf "Part 1: %d\n" $ part1 100 (M.size start) seq
+    printf "Part 2: %d\n" $ part2 seq
+  where
+    step = fromLeft undefined . iterateM flash . M.map succ
 
 parse raw = M.fromList
     [ (V2 r c, digitToInt i)
     | (r,s) <- zip [0..] $ lines raw
     , (c,i) <- zip [0..] s ]
 
-solve n m =
-    M.size m * n - go m
-  where
-    go = sum . take n . tail . map M.size . iterate (step . reset)
-    step = fromLeft undefined . iterateM flash . M.map succ
-    reset q = M.union q z
-    z = M.map (const 0) m
+part1 n z mm = n * z - calc mm where
+    calc = sum . take n . tail . map M.size
+
+part2 = fromJust . findIndex ((==0).M.size)
 
 flash prev
     | M.null over = Left under
