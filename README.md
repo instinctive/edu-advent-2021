@@ -46,3 +46,6 @@ https://adventofcode.com/2021
 
 **Day 12:**
 [Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/h12.hs)
+
+**Day 13:**
+[Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/h13.hs)

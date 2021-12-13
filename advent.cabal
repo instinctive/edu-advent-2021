@@ -161,3 +161,12 @@ executable h12
   build-depends:
    , containers
    , text
+
+executable h13
+  import: shared
+  main-is: h13.hs
+  ghc-options: -main-is H13
+  build-depends:
+   , containers
+   , linear
+   , split
