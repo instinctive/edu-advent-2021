@@ -4,8 +4,6 @@ import Control.Monad.State.Strict ( evalState, modify', gets )
 import qualified Data.Map.Monoidal.Strict as MM
 import qualified Data.Map.Strict as M
 
-type Map = MM.MonoidalMap
-
 main = do
     start <- getLine
     void getLine
@@ -15,7 +13,6 @@ main = do
 
 parse = f . words where f [[a,b],_,[c]] = ((a,b),c)
 
--- single :: Char -> Map Char (Sum Int)
 single c = MM.singleton c 1
 
 solve rules start n = getSum $
