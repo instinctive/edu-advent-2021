@@ -1,6 +1,6 @@
 module H14 where
 
--- import Control.Monad.State.Strict (execState,modify)
+import Control.Monad.State.Strict ( evalState, modify', gets )
 import qualified Data.Map.Monoidal.Strict as MM
 import qualified Data.Map.Strict as M
 
@@ -25,8 +25,18 @@ solve rules start n = getSum $
     outer = mconcat $ single <$> start
     xx = MM.elems $ inner <> outer
 
-counts rules = go where
-    go 0 _ _ = MM.empty
-    go i a b = 
-        let c = rules M.! (a,b) in
-        go (i-1) a c <> go (i-1) c b <> single c
+counts rules n a b =
+    flip evalState M.empty $ memo (n,a,b)
+  where
+    memo k = gets (M.lookup k) >>= \case
+        Just v -> pure v
+        Nothing -> do
+            v <- calc k
+            modify' $ M.insert k v
+            pure v
+    calc (0,_,_) = pure MM.empty
+    calc (i,a,b) = do
+        let c = rules M.! (a,b)
+        ac <- memo (i-1,a,c)
+        cb <- memo (i-1,c,b)
+        pure $ mconcat [ac,cb,single c]
