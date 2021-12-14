@@ -177,3 +177,4 @@ executable h14
   ghc-options: -main-is H14
   build-depends:
    , containers
+   , mtl

@@ -1,23 +1,25 @@
 module H14 where
 
+import Control.Monad.State.Strict (execState,modify)
 import qualified Data.Map.Strict as M
 
 main = do
     temp <- getLine
     void getLine
     rules <- getContents <&> M.fromList . map parse . lines
-    let (one,two) = solve rules temp :: (Int,Int)
-    printf "Part 1: %d\n" one
-    printf "Part 2: %d\n" two
+    printf "Part 1: %d\n" (solve rules temp 10 :: Int)
+    printf "Part 2: %d\n" (solve rules temp 40 :: Int)
 
-parse = f . words where f [[a,b],_,[c]] = ([a,b],[c,b])
+parse = f . words where f [[a,b],_,[c]] = ((a,b),c)
 
-solve m s =
-    (at 10, at 40)
+solve rules temp n =
+    maximum counts - minimum counts
   where
-    at i = let xx = count i in maximum xx - minimum xx
-    count i = M.elems . M.fromListWith (+) . map (,1) $ ss !! i
-    ss = iterate (step m) s
-
-step m s = (head s:) . concat $ zipWith f s (tail s) where
-    f a b = M.findWithDefault [b] [a,b] m
+    counts = M.elems . flip execState M.empty . go $ (,n) <$> temp
+    add c = modify $ M.insertWith (+) c 1
+    go [(a,_)]            = add a >>          pure ()
+    go ((a,0):more)       = add a >>          go more
+    go ((a,_):(b,0):more) = add a >> add b >> go more
+    go ((a,i):(b,j):more) = go ((a,i):(c,k):(b,j):more) where
+        c = rules M.! (a,b)
+        k = min i j - 1
