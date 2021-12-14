@@ -15,7 +15,7 @@ main = do
 
 parse = f . words where f [[a,b],_,[c]] = ((a,b),c)
 
-single :: Char -> Map Char (Sum Int)
+-- single :: Char -> Map Char (Sum Int)
 single c = MM.singleton c 1
 
 solve rules start n = getSum $
@@ -26,17 +26,14 @@ solve rules start n = getSum $
     xx = MM.elems $ inner <> outer
 
 counts rules n a b =
-    flip evalState M.empty $ memo (n,a,b)
+    flip evalState M.empty $ memo calc (n,a,b)
   where
-    memo k = gets (M.lookup k) >>= \case
-        Just v -> pure v
-        Nothing -> do
-            v <- calc k
-            modify' $ M.insert k v
-            pure v
     calc (0,_,_) = pure MM.empty
     calc (i,a,b) = do
         let c = rules M.! (a,b)
-        ac <- memo (i-1,a,c)
-        cb <- memo (i-1,c,b)
+        ac <- memo calc (i-1,a,c)
+        cb <- memo calc (i-1,c,b)
         pure $ mconcat [ac,cb,single c]
+
+memo f k = gets (M.lookup k) >>= maybe calc pure where
+    calc = f k >>= \v -> modify' (M.insert k v) >> pure v
