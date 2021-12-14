@@ -170,3 +170,10 @@ executable h13
    , containers
    , linear
    , split
+
+executable h14
+  import: shared
+  main-is: h14.hs
+  ghc-options: -main-is H14
+  build-depends:
+   , containers
