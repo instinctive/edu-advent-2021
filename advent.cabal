@@ -179,3 +179,14 @@ executable h14
    , containers
    , monoidal-containers
    , mtl
+
+executable h15
+  import: shared
+  main-is: h15.hs
+  ghc-options: -main-is H15
+  build-depends:
+   , array
+   , containers
+   , linear
+   , mtl
+   , pqueue
