@@ -11,8 +11,8 @@ main = do
     let nr = length ss; nc = length (head ss)
     let final = V2 nr nc
     let terrain = parse final ss
-    print $ solve terrain 1 final
-    print $ solve terrain 5 final
+    putStr "Part 1: " >> print (solve terrain 1 final)
+    putStr "Part 2: " >> print (solve terrain 5 final)
 
 parse final ss =
     A.listArray (V2 1 1, final)
@@ -36,14 +36,6 @@ solve ary x final@(V2 nr nc) =
     go (P.singleton $ Path start 0)
   where
     start = V2 1 1
-    cost (V2 r c) = mod (k-1) 9 + 1 where
-        k = ary A.! (V2 (rr+1) (cr+1)) + rq + cq
-        (rq,rr) = quotRem (r-1) nr
-        (cq,cr) = quotRem (c-1) nc
-    valid (V2 r c) = r >= 1 && c >= 1 && r <= x * nr && c <= x * nc
-    cheaper Path{..} = gets (M.lookup _pLoc) >>= \case
-        Just c | c <= _pCost -> pure False
-        _ -> modify' (M.insert _pLoc _pCost) >> pure True
     go pq
         | _pLoc == V2 x x * final = pure _pCost
         | otherwise = do
@@ -52,4 +44,12 @@ solve ary x final@(V2 nr nc) =
       where
         Just (p@Path{..},q) = P.minView pq
         next = map mk . filter valid $ adj _pLoc
-        mk v = Path v (_pCost + (cost v))
+        mk v = Path v (_pCost + cost v)
+        valid (V2 r c) = r >= 1 && c >= 1 && r <= x * nr && c <= x * nc
+        cost (V2 r c) = mod (k-1) 9 + 1 where
+            k = ary A.! (V2 (rr+1) (cr+1)) + rq + cq
+            (rq,rr) = quotRem (r-1) nr
+            (cq,cr) = quotRem (c-1) nc
+        cheaper Path{..} = gets (M.lookup _pLoc) >>= \case
+            Just c | c <= _pCost -> pure False
+            _ -> modify' (M.insert _pLoc _pCost) >> pure True
