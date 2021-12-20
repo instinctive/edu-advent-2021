@@ -1,6 +1,6 @@
 module H15 where
 
-import Control.Monad.State.Strict (evalState,gets,modify')
+import Control.Monad.State.Strict (evalState,gets,modify',get)
 import Linear.V2
 import qualified Data.Array as A
 import qualified Data.Map.Strict as M
@@ -11,6 +11,14 @@ main = do
     let nr = length ss; nc = length (head ss)
     let final = V2 nr nc
     let terrain = parse final ss
+    print $ show (nr,nc)
+    -- let m = solve terrain 1 final
+    -- sequence_
+    --     [ sequence_
+    --         [ printf " %4d" (M.findWithDefault (-1) (V2 r c) m)
+    --         | c <- [1*nc-9..1*nc] ]
+    --         >> putStr "\n"
+    --     | r <- [1*nr-9..1*nr] ]
     putStr "Part 1: " >> print (solve terrain 1 final)
     putStr "Part 2: " >> print (solve terrain 5 final)
 
@@ -25,6 +33,8 @@ data Path = Path
     , _pCost :: Int
     } deriving (Eq,Show)
 
+data Stats = Stats { examined, pqmax, mapsz, cost :: Int } deriving Show
+
 instance Ord Path where
     compare = comparing heur where heur Path{..} = _pCost - sum _pLoc
 
@@ -33,14 +43,14 @@ adj = let n = -1; nsew = [V2 1 0, V2 n 0, V2 0 1, V2 0 n] in
 
 solve ary x final@(V2 nr nc) =
     flip evalState (M.singleton start 0) $
-    go (P.singleton $ Path start 0)
+    go 0 0 (P.singleton $ Path start 0)
   where
     start = V2 1 1
-    go pq
-        | _pLoc == V2 x x * final = pure _pCost
+    go z !n pq
+        | _pLoc == V2 x x * final = gets M.size >>= \mz -> pure $ Stats n z mz _pCost
         | otherwise = do
             pp <- filterM cheaper next
-            go $ foldl' (flip P.insert) q pp
+            go (max z $ P.size pq) (n+1) $ foldl' (flip P.insert) q pp
       where
         Just (p@Path{..},q) = P.minView pq
         next = map mk . filter valid $ adj _pLoc
