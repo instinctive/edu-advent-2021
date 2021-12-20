@@ -184,9 +184,40 @@ executable h15
   import: shared
   main-is: h15.hs
   ghc-options: -main-is H15
+  -- ghc-options: -main-is H15 -rtsopts -fforce-recomp
+  -- ghc-options: -main-is H15 -rtsopts -fforce-recomp -prof -fprof-auto
   build-depends:
    , array
    , containers
    , linear
    , mtl
    , pqueue
+
+executable h16
+  import: shared
+  main-is: h16.hs
+  ghc-options: -main-is H16
+  build-depends:
+   , split
+
+executable h17
+  import: shared
+  main-is: h17.hs
+  ghc-options: -main-is H17
+  build-depends:
+   , linear
+
+executable h18
+  import: shared
+  main-is: h18.hs
+  ghc-options: -main-is H18
+  build-depends:
+
+executable h19
+  import: shared
+  main-is: h19.hs
+  ghc-options: -main-is H19
+  build-depends:
+   , containers
+   , linear
+   , split
