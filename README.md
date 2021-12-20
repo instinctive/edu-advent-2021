@@ -55,3 +55,15 @@ https://adventofcode.com/2021
 
 **Day 15:**
 [Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/h15.hs)
+
+**Day 16:**
+[Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/h16.hs)
+
+**Day 17:**
+[Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/h17.hs)
+
+**Day 18:**
+[Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/h18.hs)
+
+**Day 19:**
+[Haskell](https://github.com/instinctive/edu-advent-2021/blob/main/h19.hs)
