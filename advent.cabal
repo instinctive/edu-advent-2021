@@ -218,6 +218,7 @@ executable h19
   main-is: h19.hs
   ghc-options: -main-is H19
   build-depends:
+   , array
    , containers
    , linear
    , split
