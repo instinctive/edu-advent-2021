@@ -222,3 +222,12 @@ executable h19
    , containers
    , linear
    , split
+
+executable h20
+  import: shared
+  main-is: h20.hs
+  ghc-options: -main-is H20
+  build-depends:
+   , array
+   , containers
+   , linear
