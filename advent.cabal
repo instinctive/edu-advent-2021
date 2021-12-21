@@ -231,3 +231,11 @@ executable h20
    , array
    , containers
    , linear
+
+executable h21
+  import: shared
+  main-is: h21.hs
+  ghc-options: -main-is H21
+  build-depends:
+   , containers
+   , mtl
