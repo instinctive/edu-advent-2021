@@ -237,5 +237,18 @@ executable h21
   main-is: h21.hs
   ghc-options: -main-is H21
   build-depends:
+   , array
    , containers
+   , linear
+   , mtl
+
+executable h22
+  import: shared
+  main-is: h22.hs
+  ghc-options: -main-is H22
+  build-depends:
+   , array
+   , containers
+   , lens
+   , linear
    , mtl
